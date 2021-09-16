@@ -28,7 +28,7 @@ let isSubscribed3 = false;
 */
 let student = {};
 
-console.log(type of student);
+console.log(typeof student);
 
 student = {
     name4: 'nome da pessoa',
