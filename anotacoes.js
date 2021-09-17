@@ -344,3 +344,213 @@ console.log(techs.indexOf("aaa"));
 
 // Resultado final de techs
 console.log(techs);
+
+//------------------------------------------------------------------
+// EXPRESSÕES DE OPERADORES
+//------------------------------------------------------------------
+
+/*
+    Expressões e Operadores
+        - Expressions = ";" no fim das expressões é opcional
+
+        - Operators
+            - Binary = x+y
+            - Unary = ++i, typeof, ...
+            - Ternary = comparação ? 'se true' : 'else (false)';
+*/
+
+/*
+    New
+        - left-hand-side expression
+        - criar um novo objeto
+*/
+let newName = new String('vitor');
+newName.surName = 'pimenta';
+let newAge = new Number(100);
+console.log(`
+    newName: ${newName} ${newName.surName}
+    newAge: ${newAge}`);
+
+/*
+    Operadores Unários
+        - typeof
+        - delete
+*/
+const pessoaDeletada = {
+    name: 'vito',
+    age: 2500
+}
+delete pessoaDeletada.age;
+console.log(pessoaDeletada);
+console.log(typeof 'Isso precisa ser uma string');
+
+/*
+    Operadores Aritméticos
+        ->  +   -   /   *   %   ++  --  **(exponencial)
+*/
+
+/*
+    Grouping operator ( )
+        - Ordem de precedência em operações
+*/
+
+/*
+    Operadores de Comparação
+        -> Retornar true ou false
+        -> ==   !=  <   >   <=  >=
+        -> === estritamente igual (compara valor e tipo)
+        -> !== estritamente diferente
+*/
+
+/*
+    Operadores de Atribuição (Assignment)
+        -> =    +=  -=  *=  /=  %=  **=
+*/
+
+/*
+    Operadores Lógicos (logical operators)
+        - Compara valores booleanos
+        -> AND(&&)  OR(||)  NOT(!)
+*/
+
+/*
+    Operador Condicional Ternário
+        comparação ?   true  :  false
+                  "if"     "else"
+*/
+
+/*
+    Operador de String (String operator)
+        - Comparison (comparação)
+            -> console.log('a' == 'a');
+        
+        - Concatenation (concatenação)
+            -> União de duas ou mais strings
+            console.log('a' + 'b' + ...);
+*/
+
+/*
+    Falsy
+        - Quando um valor é considerado false em contextos onde um booleano é obrigatório (condicionais e loops)
+
+        -> false    0   -0  ""  null    undefined   NaN
+
+    Truthy
+        - Quando um valor é considerado true em contextos onde um booleano é obrigatório (condicionais e loops)
+
+        -> true  {} [] 1 3.23  "0"  "false" -1 Infinity -Infinity
+*/
+
+/*
+    Operator Precedence - Precedência de Operadores
+        ORDEM:
+        - Grouping                          ()
+        - Negação e Incremento              ! ++ --
+        - Multiplicação e Divisão           * /
+        - Adição e subtração                + -
+        - Relacional                        < <= > >=
+        - Igualdade                         == != === !==
+        - AND                               &&
+        - OR                                ||
+        - Condicional                       ?:
+        - Assignment (atribuição)           = += -= *=
+*/
+
+//------------------------------------------------------------------
+// CONTROLE DE FLUXO DA APLICAÇÃO
+//------------------------------------------------------------------
+
+/* 
+    if / else
+        - Se / senão
+*/
+
+let temperature = 36.5;
+
+if  (temperature >= 38){
+    console.log('Febre alta');
+} else if (temperature >= 37){
+    console.log('Febre moderada');
+} else {
+    console.log('Saudável');
+}
+
+/*
+    Switch case
+*/
+let expressao = 'b';
+switch(expressao) {
+    case 'a':
+        // codigo
+        break;
+    case 'b':
+        // codigo
+        break;
+    default:
+        // codigo
+        break;
+}
+
+/*
+    throw ... try/catch
+        try - tentiva de executar determinada tarefa
+        throw - na execução foi identificado algo irregular. o erro é lançado para a instância que chamou a tarefa
+        catch - a instância que chamou a tarefa captura o erro lançado pela exceção
+    Importante para o programa não quebrar
+*/
+function sayMyName(name = '') {
+    if  (name === ''){
+        throw 'Nome é obrigatório';
+    }
+    console.log('será que chega aqui?');
+}
+
+try {
+    sayMyName();
+} catch (e) {
+    console.log(e)
+}
+
+//------------------------------------------------------------------
+// ESTRUTURA DE REPETIÇÃO
+//------------------------------------------------------------------
+
+// for (condição inicial; condição de continuação; increm./decrem.)
+
+for (let i=5; i<10;i++){
+    console.log(i);
+}
+
+// while (condição)
+let i=0;
+while (i<5){
+    console.log(i++);
+}
+
+// for...of -> percorrer arrays/string
+
+let nameForOf = 'Vitor'
+let namesForOf = ['Vitor', 'Paulo', 'Pedro']
+
+for (let char of nameForOf){
+    console.log(char);
+}
+for (let name of namesForOf){
+    console.log(name);
+}
+
+
+// for...in -> loop em cima das propriedades de um objeto
+let personForIn = {
+    name: 'vitor',
+    age: 25,
+    weight: 65.3
+}
+
+for (let property in personForIn){
+    console.log(property);              // nome da propriedade
+    console.log(personForIn[property]); // valor da propriedade
+}
+
+
+
