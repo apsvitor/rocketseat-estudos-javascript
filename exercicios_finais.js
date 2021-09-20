@@ -67,20 +67,119 @@ familyViability(familyAccounting);
     C = (F - 32) * 5/9
     F = C * 9/5 + 32
 */
-let temperatureToConvert = '212 F'
+let temperatureToConvert = '212.1 F'
 
 function convertTemperatures(temperatureToConvert) {
     let temperatureValue = parseFloat(temperatureToConvert);
     if  (String(temperatureToConvert).slice(-1) == 'C'){
-
         return ((temperatureValue*9/5 + 32).toString() + ' F');
+    } else if (String(temperatureToConvert).slice(-1) == 'F'){
+        return (((temperatureValue-32)*5/9).toString() + ' C');
     }
-    return (((temperatureValue-32)*5/9).toString() + ' C');
+    throw new Error('Unidade de temperatura inválida.');
+}
+try {
+    console.log(convertTemperatures(temperatureToConvert));    
+} catch (error) {
+    console.log(error);
 }
 
-console.log(convertTemperatures(temperatureToConvert));
-
 /*
-    4 - Buscando e encontrando dados em Array
-    
+    4 - Buscando e contando dados em Array
+    Baseado no Array de Livros por categoria abaixo, faça os seguintes desafios:
+        - Contar o número de categorias e o número de livros em cada categoria
+        - Contar o número de autores
+        - Mostrar livros do autor Augusto Cury
+        - Transformar a função acima em uma função que irá receber o nome do autor e devolver os livros desse autor.
 */
+
+const booksByCategory = [
+    {
+        category: "Riqueza",
+        books: [
+            {
+                title: "Os segredos da mente milionária",
+                author: "T. Harv Eker",
+            },
+            {
+                title: "O homem mais rico da Babilônia",
+                author: "George S. Clason",
+            },
+            {
+                title: "Pai rico, pai pobre",
+                author: "Robert T. Kiyosaky e Sharon L. Lechter",
+            },
+        ],
+    },
+    {
+        category: "Inteligência emocional",
+        books: [
+            {
+                title: "Você é insubstituível",
+                author: "Augusto Cury",
+            },
+            {
+                title: "Ansiedade - Como enfrentar o mal do século",
+                author: "Augusto Cury",
+            },
+            {
+                title: "Os 7 hábitos das pessoas altamente eficazes",
+                author: "Stephen R. Covey",
+            },
+        ],
+    },
+];
+
+// Quantidade de categorias
+const totalCategories = booksByCategory.length
+console.log(`Quantidade de categorias: ${totalCategories}`);
+
+// Quantidade de livros em cada categoria
+let booksPerCategory = [];
+for (let category of booksByCategory){
+    booksPerCategory.push(category.length);
+    console.log(`Quantidade de livros da categoria ${category.category}: ${category.books.length}`);
+}
+
+// Contar o número de autores
+let totalAuthors = [];
+for (let category of booksByCategory){
+    for (let books of category.books){
+        if  (!totalAuthors.includes(books.author)){
+            console.log(`Entrou ${books.author}`)
+            totalAuthors.push(books.author)
+        }
+    }  
+}
+console.log (`Quantidade total de autores: ${totalAuthors.length}`);
+
+// Mostrar os livros do autor Augusto Cury
+
+let augustoCuryBooks = [];
+
+for (let category of booksByCategory){
+    for (let books of category.books){
+        if  (books.author === "Augusto Cury"){
+            augustoCuryBooks.push(books.title);
+        }
+    }  
+}
+console.log(`Livros de Augusto Cury: ${augustoCuryBooks} `);
+
+// Função que fala o autor e são mostrados os livros
+function anyAuthorsBook (author){
+    let anyAuthor = []
+    for (let category of booksByCategory){
+        for (let books of category.books){
+            if  (books.author === author){
+                anyAuthor.push(books.title);
+            }
+        }
+    }
+    if  (anyAuthor.length > 0)
+        console.log(`Livros de ${author}: ${anyAuthor}`);
+    else
+        console.log(`Autor(a) ${author} não possui livros aqui`);
+}
+anyAuthorsBook("vitor");
+anyAuthorsBook("T. Harv Eker");
